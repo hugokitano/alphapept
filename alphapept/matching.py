@@ -249,6 +249,7 @@ def calculate_deltas_spark(settings: dict, filenames: list, calib:bool = False, 
     logging.info("Deltas and weights calculated")
     return deltas, np.array(weights), offset_dict
 
+import pyspark
 def calculate_distance_parallelized(indexes: tuple, dfs_broadcast: pyspark.broadcast.Broadcast, offset_dict: dict, calib: bool = False) -> (list,int):
     '''Wrapper function to call calculate_distance function via Spark
 
@@ -437,7 +438,7 @@ def match_datasets(settings:dict, callback:Callable = None):
         settings (dict): Dictionary containg specifications of the run
         callback (Callable): Callback function to indicate progress.
     """
-    if settings['match'].get('spark'):
+    if settings['matching'].get('spark'):
         match_datasets_spark(settings, callback)
         return
 

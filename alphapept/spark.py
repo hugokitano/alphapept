@@ -10,7 +10,7 @@ def create_spark_session(settings: dict):
     """
     Boots up a SparkSession object manager to handle parallelized operations
     """
-    spark = SparkSession.builder
+    session = SparkSession.builder
     if not settings.get('spark'):
         return SparkSession.builder.getOrCreate()
     for parameter, value in settings['spark'].items():
